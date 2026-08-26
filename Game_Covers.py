@@ -1,5 +1,5 @@
-from gamecovers import GameCoversApp
+from gamecovers_gui import App
 
 
 if __name__ == "__main__":
-    GameCoversApp().mainloop()
+    App().mainloop()
