@@ -1,0 +1,10 @@
+__pycache__/
+*.py[cod]
+*.spec
+build/
+dist/
+.venv/
+venv/
+.game_cover_cache/
+cover_overrides.json
+*.log
