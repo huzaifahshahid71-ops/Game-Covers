@@ -1,0 +1,36 @@
+name: Build Windows EXE
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main ]
+    paths:
+      - "Game_Covers.py"
+      - "gamecovers/**"
+      - "requirements*.txt"
+      - "build.bat"
+      - "assets/**"
+      - ".github/workflows/build-windows.yml"
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Build executable
+        shell: cmd
+        run: build.bat /ci
+
+      - name: Upload executable
+        uses: actions/upload-artifact@v4
+        with:
+          name: Game-Covers-Windows
+          path: dist/Game Covers.exe
+          if-no-files-found: error
