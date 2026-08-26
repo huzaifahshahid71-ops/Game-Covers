@@ -40,7 +40,7 @@ RUNAS_LINK_FLAG = 0x00002000
 
 session = requests.Session()
 session.headers.update({
-    "User-Agent": "GameCovers/1.2",
+    "User-Agent": "GameCovers/1.3",
     "Accept": "application/json,image/*,*/*;q=0.8",
 })
 
