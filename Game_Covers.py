@@ -1,4 +1,4 @@
-from gamecovers_gui import App
+from gamecovers_app import App
 
 
 if __name__ == "__main__":

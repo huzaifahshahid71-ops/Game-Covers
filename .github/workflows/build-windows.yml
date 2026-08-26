@@ -6,8 +6,8 @@ on:
     branches: [ main ]
     paths:
       - "Game_Covers.py"
-      - "gamecovers/**"
-      - "requirements*.txt"
+      - "gamecovers_*.py"
+      - "requirements.txt"
       - "build.bat"
       - "assets/**"
       - ".github/workflows/build-windows.yml"

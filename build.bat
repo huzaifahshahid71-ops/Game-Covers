@@ -3,7 +3,7 @@ setlocal EnableExtensions
 cd /d "%~dp0"
 
 echo ============================================================
-echo                 Game Covers - Windows Builder
+echo                 Game Covers v1.3 - Windows Builder
 echo ============================================================
 echo.
 
@@ -12,7 +12,7 @@ if errorlevel 1 (
     echo [ERROR] Python was not found.
     echo Install Python 3.11 or newer from https://www.python.org/downloads/
     echo Make sure "Add Python to PATH" is enabled during setup.
-    pause
+    if /I not "%~1"=="/ci" pause
     exit /b 1
 )
 
@@ -21,15 +21,15 @@ py -m pip install --upgrade pip
 if errorlevel 1 goto :failed
 
 echo.
-echo [2/4] Installing build dependencies...
-py -m pip install -r requirements-dev.txt
+echo [2/4] Installing dependencies and PyInstaller...
+py -m pip install -r requirements.txt pyinstaller
 if errorlevel 1 goto :failed
 
 echo.
 echo [3/4] Cleaning previous build output...
 if exist build rmdir /s /q build
+if exist dist rmdir /s /q dist
 if exist "Game Covers.spec" del /q "Game Covers.spec"
-
 
 echo.
 echo [4/4] Building Game Covers.exe...
@@ -40,8 +40,6 @@ py -m PyInstaller ^
   --windowed ^
   --name "Game Covers" ^
   --icon "assets\game_covers.ico" ^
-  --add-data "assets;assets" ^
-  --collect-all customtkinter ^
   Game_Covers.py
 if errorlevel 1 goto :failed
 
